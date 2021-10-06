@@ -1,24 +1,32 @@
 package com.example.jpa.domain;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * created by jg 2021/06/02
- */
-@NoArgsConstructor
+@Setter
 @Getter
 @Entity
 public class Member {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-            generator = "MEMBER_SEQ_GENERATOR")
-    @SequenceGenerator(name = "MEMBER_SEQ_GENERATOR", sequenceName = "review_sequence")
+    @Id @GeneratedValue
+    @Column(name = "member_id")
     private Long id;
 
-    @Column(name = "MEMBER_NAME")
-    private String name;
+    private String username;
+
+    @Embedded
+    private Address address;
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
+
 }
