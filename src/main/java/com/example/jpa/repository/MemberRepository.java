@@ -1,20 +1,20 @@
 package com.example.jpa.repository;
 
 import com.example.jpa.domain.Member;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**
  * created by Gyunny 2021/08/08
  */
-@RequiredArgsConstructor
 @Repository
 public class MemberRepository {
 
-    private final EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     public Long save(Member member) {
         em.persist(member);
