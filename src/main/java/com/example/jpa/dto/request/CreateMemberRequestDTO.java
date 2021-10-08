@@ -12,9 +12,7 @@ public class CreateMemberRequestDTO {
     private String name;
 
     public Member toEntity() {
-        return Member.builder()
-                .username(name)
-                .build();
+        return new Member(name);
     }
 
 }

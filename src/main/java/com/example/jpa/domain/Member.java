@@ -1,6 +1,5 @@
 package com.example.jpa.domain;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 
-@Builder
 @Setter
 @Getter
 @Entity
@@ -33,4 +31,7 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
+    public Member(String username) {
+        this.username = username;
+    }
 }
